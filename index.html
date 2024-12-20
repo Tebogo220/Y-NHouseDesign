@@ -1,0 +1,365 @@
+
+<!doctype html>
+<html>
+	<head>
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Transform your home with expert interior and exterior styling services. At Y&N House Design, we create stunning, personalized design to enhance your living spaces and curb appeal. Contact us for modern home styling solutions today!.">
+		<meta name="keywords" content="interior styling, exterior styling, home decor services, modern designs, personalized home design">
+		<meta name="author" content="Y&N House Design">
+		<title>Home Page - Y&N House Design</title>
+	
+		
+		
+		<style>
+		
+			body{
+				margin: 0px;
+				background: #333;
+				background-size: cover;
+				font-family: Arial;
+				overflow-x: hidden;
+			}
+/*===================Nav Bar=========*/  			
+			#nav-bar{
+
+				display: flex;
+			}
+			#nav-bar li {
+				margin-left: 20px;
+				list-style: none;
+			}
+			#nav-bar li a{
+				text-decoration: none;
+				color: white;
+				border-radius: 5px;
+				padding: 2px 7px;
+				background-color: #555;
+			}
+			details {
+				text-decoration: none;
+				color: white;
+				border-radius: 5px;
+				background-color: #555;
+				cursor: pointer;
+				margin-left: 20px;
+				padding: 2px 7px;
+			}
+
+			#current{
+				color: black;
+				font-weight: bold;
+			}
+/*===============Content===================*/
+			#about-us{
+				color: white;
+				padding: 5px;
+				margin-top: 10px;
+				border-top:1px solid orange;
+			}
+			#main-content{
+				background-color: #999;
+				margin: 5px;
+				padding: 10px;
+				border: 1px solid black;
+				border-radius: 5px;
+			}
+			#img-container{
+				border-radius: 5px;
+				border: 1px solid black;
+				background: white;
+				width: 500px;
+				height: 400px;	
+				position: absolute;
+				top: 480px;
+				right: 50px;
+			}
+			.GoalandMission{
+				background-image: url("images/showoff.png");
+				width: 100%;
+				height: 100%;
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				text-align: center;
+				display: flex;
+			}
+			.GoalandMission p{
+				margin: auto 20px;
+				color: blue;
+				font-weight: bold;
+			}
+			#closure{
+				padding: 10px;
+				color: white;
+				border-radius: 5px; 
+				border: 1px solid orange;
+			}
+			footer{
+				background-color: orange;
+				color: black;
+				margin: 0px;
+				height: 50px;
+				text-align: center;
+				padding: 10px;
+			}
+/*==============OVERLAY=============*/
+			.overlay{
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgb(0,0,0 , 0.5);
+				background-filter: blur(5px,5px);
+				z-index: 1000;
+				justify-content: center;
+				align-items: center;
+				
+			}
+			
+			.login-form{
+				background: #ffffff;
+				padding: 20px ;
+				border-radius: 8px;
+				box-shadow: 0 4px 8px rgb(0,0,0,0.2);
+				width: 300px;
+				text-align: center;
+			}
+			
+			.login-form h2{
+				margin-bottom: 20px;
+			}
+			
+			.login-form label{
+				display: block;
+				margin-bottom: 5px;
+			}
+			
+			.login-form input{
+				width: 100%;
+				padding: 5px;
+				margin-bottom: 15px;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				
+			}
+			
+			.login-form button{
+				padding: 10px ;
+				border: none;
+				border-radius: 4px; 
+				background-color: #007bff;
+				color: #fff;
+				font-size: 16px ;
+				cursor: pointer;
+			}
+			
+			.login-form button:hover{
+				background-color: #0056b3;
+			}
+			
+			#closeLoginForm{
+				background-color: #dc3545;
+				margin-top: 10px;
+			}
+			
+			#closeLoginForm:hover{
+				background-color: #c82333;
+			}
+			
+			.eye-icon{
+				position: relative;
+				top: -55px;
+				right: -210px;
+				transform: translateY(-50%);
+				cursor: pointer;
+			}
+/*===============Screen Sizing================*/
+			@media only screen and (max-width: 1000px) {
+				#nav-bar{
+
+					font-size: 0.7em;
+				}
+				#img-container{
+					right: 5px;
+				}
+				
+			}
+			@media only screen and (max-width: 768px){
+				#img-container{
+					width: 350px;
+					height: 250px;
+					top: 370px;
+				}
+			}
+			@media only screen and (max-width: 685px){
+				body{
+				font-size: 0.7em;
+				}
+				#img-container{
+					top: 280px;
+					width: 300px;
+					height: 200px;
+				}
+			}
+			@media only screen and (max-width: 425px){
+				body{
+				font-size: 0.5em;
+				}
+				#main-content{
+					padding: 0px;
+					margin: 0px;
+				}
+				#img-container{
+					top: 200px;
+					width: 200px;
+					height: 130px;
+				}
+				.GoalandMission{
+					width: 100%;
+					height: 100%;
+					background-size: cover;
+					background-position: center;
+				}
+				.GoalandMission p{
+					font-size: 0.5em;
+				}
+			}
+			@media only screen and (max-width: 550px){
+				body{
+					font-size: 0.7;
+				}
+				#img-container{
+					position: static;
+					margin: 0px auto;
+				}
+			}
+		</style>
+		
+	</head>
+
+	<body>
+		<header>
+			<img src="images/contacts.png" alt="headerBox" style="width: 100%; height: 100%; object-fit: cover;">
+			<ul id="nav-bar">
+				<li><a href="index.html"><span id="current">Home</span></a></li>
+				<li><a href="gallery.html">Our Work</a></li>
+				<li><a href="contact.html">Contacts</a></li>
+				
+				<details>
+					<summary>Stuff</summary>
+					<p id="openLoginForm">Admin</p>
+				</details>
+			</ul>
+		</header>
+
+		<div id="about-us" >
+			<h2>About US </h2>
+			<p>We are Y&N House Design, we specialize in transforming houses into stunning, stylish homes. Our passion lies in creating visually captivating interiors and exteriors that reflect your unique taste and personality. Whether you're looking to refresh your living spaces or enhance your home's curb appeal, we are here for you. Whether it's a single room or an entire house, we aim to exceed expectations with creative and tailored solutions.</p>
+		</div>
+		<div id="main-content" >
+			<ul id="services"><h2>Services:</h2>
+				<li>Painting Houses (Interior and Exterior)</li>
+				<li>Fence Painting</li>
+				<li>Waterproof Roofing</li>
+				<li>Waterproof Torch-On for Slab</li>
+				<li>Rhinolite</li>
+				<li>Landscaping design</li>
+				<li>Vanish Wooden Doors & Frames</li>
+				<li>Pavements</li>
+				<li>Gammazing & Clamour Coat</li>
+				<li>And More...</li>
+			</ul>
+				
+			<ul class="services">
+				<ol>
+					<h3>Personalized Approach:</h3>
+					<p>Designs tailored to your style and preferences.</p>
+				</ol>
+				<ol>
+					<h3>Attention to detail:</h3>
+					<p>Every corner of your home styled to perfection.</p>
+				</ol>
+			</ul>
+		
+		</div>
+		<div id="img-container">
+		<div class="GoalandMission" >
+			<p>Our Goal is to create beautifully styled homes that reflect your personality and make every space look its best, inside and outside.</p>
+			<p>With a Mission to transform houses into stunning, comfortable homes with creative and personalized styling  solutions that bring your vision to life.</p>
+		</div>
+		</div>
+		
+		<div id="closure" >
+		
+			<h3>Transform your house into a work of art and beauty with Y&N House Design, WHERE STYLE MEETS COMFORT. </h3>
+		</div>
+		<footer>
+			<p>Go to <a href="gallery.html"> Our work</a> page to see some of our work.</p>
+		</footer>
+		
+		<div class="overlay" id="overlay" >
+			<div class="login-form">
+				<h2>Admin Login</h2>
+				<form id="loginForm" >
+					<label for="Password">Admin Password:</label>
+					<input type="password" id="password" name="password" required>
+					<span class="eye-icon" id="togglePassword">👁‍🗨</span>
+					<button  type="submit" >Admin</button>
+					<button type="button" id="closeLoginForm" >Close</button>
+				</form>
+			</div>
+		</div>
+		
+		<script>
+		
+			const openLoginForm = document.getElementById('openLoginForm');
+			const closeLoginForm = document.getElementById('closeLoginForm');
+			const overlay = document.getElementById('overlay');
+			const loginForm = document.getElementById('loginForm');
+			const correctPassword = "mjorompa@Y&NHouseDesign12972";
+			const passwordInput = document.getElementById('password');
+			const togglePassword = document.getElementById('togglePassword');
+			
+			openLoginForm.addEventListener('click',()=>{
+				alert("This is for stuff and Admin at Y&N Houses Design!")
+				overlay.style.display = 'flex';
+			});
+			
+			closeLoginForm.addEventListener('click',()=>{
+				overlay.style.display = 'none';
+			});
+			
+			loginForm.addEventListener('submit',(e)=>{
+				e.preventDefault();
+				
+				const passwordInput = document.getElementById('password').value;
+				
+				if(passwordInput === correctPassword){
+					alert("Welcome to the admin")
+					window.location.href = "Admin.html";
+				} else {
+					alert("Incorrect password! This is admin and stuff only login.");
+				}
+			});
+			/*=======show password=======*/
+			togglePassword.addEventListener('click',()=>{
+				if(passwordInput.type === "password"){
+					passwordInput.type = "text";
+					
+					togglePassword.textContent = "🚫";
+				} else{
+					passwordInput.type = "password";
+					
+					togglePassword.textContent = "👁‍🗨";
+				}
+			});
+		</script>
+	</body>
+
+
+</html>
+

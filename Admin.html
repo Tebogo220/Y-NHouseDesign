@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+	<head>
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Transform your home with expert interior and exterior styling services. At Y&N House Design, we create stunning, personalized design to enhance your living spaces and curb appeal. Contact us for modern home styling solutions today!.">
+		<meta name="keywords" content="interior styling, exterior styling, home decor services, modern designs, personalized home design">
+		<meta name="author" content="Y&N House Design">
+		<title>Admin Page - Y&N House Design</title>
+	
+		
+		
+		<style>
+			body { font-family: Arial, sans-serif; 
+				margin: 0px;
+				background-color: lightgrey;
+			}
+			
+			.gallery {
+				display: flex; 
+				flex-wrap: wrap; 
+				gap: 10px; 
+			}
+			.gallery-item {
+				width: 200px; 
+				text-align: center; 
+			}
+			.gallery-item img { 
+				width: 100%; 
+			}
+			
+			#page-header{
+				background: #333;
+			}
+			
+			#page-header h1{
+				text-align: center;
+				color: white;
+			}
+			
+			#CompanyName{
+				color: white;
+				padding: 10px;
+			}
+			
+			.name{
+				font-weight: bold;
+				color: orange;
+			}
+			
+			#section-header{
+				background-color: #ff000;
+			}
+			
+			#page-header button {
+				background: rgb(50,147,235);
+				border-radius: 10px;
+				text-text-decoration: none;
+				padding: 10px 20px;
+				border: none;
+				font-weight: bold;
+				margin: 10px;
+			}
+			
+			details {
+				color: white;
+				background: #333;
+				margin: 10px;
+				padding: 10px;
+				height: 50px;
+			}
+				
+			form {
+				margin: 20px 300px;
+				text-align: center;
+				border: 1px solid black;
+				border-radius: 5px;
+				padding: 5px 0px;
+			}
+			form input[type="file"] {
+				margin-bottom: 10px;
+			}
+			
+			button {
+				padding: 10px 20px;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				background-color: #007bff;
+				color: #fff;
+			}
+			
+			@media only screen and (max-width: 800px){
+				form{
+					padding: 10px;
+					margin: 20px 200px;
+				}
+			}
+			
+			@media only screen and (max-width: 600px){
+				form{
+					margin: 20px 80px;
+				}
+			}
+			
+			@media only screen and (max-width: 350px){
+				form{
+					margin: 20px 20px;
+				}
+			}
+			
+		</style>
+		
+	</head>
+
+	<body>
+	
+		<div id="page-header" >
+			<h1 > ADMIN</h1>
+			<h2 id="CompanyName"><span class="name" >Y</span>&<span class="name">N</span> House Design</h2>
+			<a href="index.html" id="backBtn" ><button > < Back</button></a>
+
+		</div>
+		
+		<div id="section-header">
+			<details >
+				<h3><summary title="click for more info"></summary></h3 >
+				<p>This is an admin page for the management of the website(stuff only page).</p >
+			</details>
+		</div>
+			
+		<form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data" >
+			<input type="file" name="picture" id="fileInput" required >
+			<button type="submit">Upload Image</button>
+		</form>
+		
+		<h2>Uploaded Images</h2>
+		<div id="imageList" class="gallery">
+			<!-- Dynamically filled by JS -->
+		</div>
+
+	
+		<script>
+		
+			
+		// Base API URL 
+			const API_BASE_URL = "https://your-app-name.onrender.com"; // Render URL
+		
+			// Fetch and display images
+			async function fetchImages() {
+				const response = await fetch(`${API_BASE_URL}/get-images`);
+				const images = await response.json();
+				const imageList = document.getElementById('imageList');
+				imageList.innerHTML = ''; // Clear previous images
+		
+				images.forEach(image => {
+					const imageItem = document.createElement('div');
+					imageItem.classList.add('gallery-item');
+					imageItem.innerHTML = `
+					<img src="${API_BASE_URL}${image.url}" alt="${image.id}" />
+					<form action="${API_BASE_URL}/delete/${image.id}" method="POST" style="display:inline;">
+						<button type="submit">Delete</button>
+					</form>
+					`;
+					imageList.appendChild(imageItem);
+				});
+			}
+		
+			// Handle image upload form submission
+			document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+				e.preventDefault();
+		
+				const formData = new FormData();
+				formData.append('picture', document.getElementById('fileInput').files[0]);
+		
+				const response = await fetch(`${API_BASE_URL}/upload`, {
+					method: 'POST',
+					body: formData,
+				});
+		
+				const data = await response.json();
+				if (data.message === 'File uploaded successfully') {
+					alert('Image uploaded successfully');
+					fetchImages();  // Refresh the list of images
+				} else {
+					alert('Error uploading image');
+				}
+			});
+		
+			// Initial fetch to display images on load
+			fetchImages();
+		
+		</script>
+	</body>
+
+
+</html>

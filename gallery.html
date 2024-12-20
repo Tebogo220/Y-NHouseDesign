@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+	<head>
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Transform your home with expert interior and exterior styling services. At Y&N House Design, we create stunning, personalized design to enhance your living spaces and curb appeal. Contact us for modern home styling solutions today!.">
+		<meta name="keywords" content="interior styling, exterior styling, home decor services, modern designs, personalized home design">
+		<meta name="author" content="Y&N House Design">
+		<title>OurWork Page - Y&N House Design</title>
+	
+		
+		
+		<style>
+			body {
+				font-family: Arial, sans-serif; 
+				background: lightgrey;
+				margin: 0;
+			}
+			
+			.gallery { 
+				display: flex; 
+				flex-wrap: wrap;
+				gap: 10px; 
+			}
+			
+			.gallery-item {
+				width: 200px;
+				text-align: center; 
+			}
+			.gallery-item img {
+				width: 100%;
+			}
+			#nav-bar{
+				display: flex;
+			}
+			
+			#nav-bar li{
+				list-style: none;
+				margin: 0 20px;
+				
+			}
+			
+			#nav-bar li a{
+				text-decoration: none;
+				color: white;
+				border-radius: 5px;
+				padding: 2px 7px;
+				background-color: #555;
+			}
+			
+			#current{
+				color: black;
+				font-weight: bold;
+			}
+			
+			#divider{
+			border: 2px solid orange;
+			margin-top: 10px;
+			}
+			
+			@media only screen and (max-width: 685px){
+				body{
+				font-size: 0.7em;
+				}
+			}
+			@media only screen and (max-width: 425px){
+				body{
+				font-size: 0.5em;
+				}
+			}
+			@media only screen and (max-width: 550px){
+				body{
+					font-size: 0.7;
+				}
+			}
+		</style>
+	
+	</head>
+	<body>
+		<div id="header" >
+			<img src="images/site-header.png" alt="headerBox" style="width: 100%; height: 100%; object-fit: cover;">
+		
+				
+			<ul id="nav-bar">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="gallery.html"><span id="current">Our Work</span></a></li>
+				<li><a href="contact.html">Contacts</a></li>
+			</ul>
+		</div>	
+		
+		<div id="divider"></div>
+		<div id="imageList" class="gallery">
+			<!-- Dynamically filled by JS  -->
+		</div>
+
+		<script>
+			// Base API URL 
+			const API_BASE_URL = "https://your-app-name.onrender.com"; //  URL
+		
+			// Fetch and display images
+			async function fetchImages() {
+				const response = await fetch(`${API_BASE_URL}/get-images`);
+				const images = await response.json();
+				const imageList = document.getElementById('imageList');
+				imageList.innerHTML = ''; // Clear previous images
+		
+				images.forEach(image => {
+					const imageItem = document.createElement('div');
+					imageItem.classList.add('gallery-item');
+					imageItem.innerHTML = `<img src="${API_BASE_URL}${image.url}" alt="${image.id}" />`;
+					imageList.appendChild(imageItem);
+				});
+		
+				// Add event listeners for modal
+				document.querySelectorAll('.gallery-item img').forEach(img => {
+					img.addEventListener('click', openModal);
+				});
+			}
+		
+			// Open modal
+			function openModal(event) {
+				const modal = document.getElementById('imageModal');
+				const modalImg = document.getElementById('modalImage');
+				modal.style.display = 'block';
+				modalImg.src = event.target.src;
+			}
+		
+			// Close modal
+			document.getElementById('closeModal').onclick = function() {
+				document.getElementById('imageModal').style.display = 'none';
+			};
+		
+			// Initial fetch to display images on load
+			fetchImages();
+		</script>
+	</body>
+
+
+</html>
