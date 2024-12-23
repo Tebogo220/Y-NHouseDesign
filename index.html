@@ -23,11 +23,11 @@
 			}
 /*===================Nav Bar=========*/  			
 			#nav-bar{
-
+				margin: 0px;
 				display: flex;
 			}
 			#nav-bar li {
-				margin-left: 20px;
+				margin-left: 15px;
 				list-style: none;
 			}
 			#nav-bar li a{
@@ -179,10 +179,10 @@
 			}
 /*===============Screen Sizing================*/
 			@media only screen and (max-width: 1000px) {
-				#nav-bar{
-
-					font-size: 0.7em;
+				.GoalandMission{
+					font-size: 0.9em;
 				}
+				
 				#img-container{
 					right: 5px;
 				}
@@ -196,9 +196,7 @@
 				}
 			}
 			@media only screen and (max-width: 685px){
-				body{
-				font-size: 0.7em;
-				}
+				
 				#img-container{
 					top: 280px;
 					width: 300px;
@@ -206,32 +204,34 @@
 				}
 			}
 			@media only screen and (max-width: 425px){
-				body{
-				font-size: 0.5em;
+				#about-us p {
+				    font-size: 1.2em;
 				}
+			#nav-bar li {
+				margin-left: 5px;
+				list-style: none;
+				font-size: 1.2em;
+			}
 				#main-content{
 					padding: 0px;
 					margin: 0px;
+					font-size: 1.3em;
 				}
 				#img-container{
-					top: 200px;
-					width: 200px;
-					height: 130px;
+					width: 100%;
+					height: 450px;
 				}
+
 				.GoalandMission{
 					width: 100%;
 					height: 100%;
 					background-size: cover;
 					background-position: center;
 				}
-				.GoalandMission p{
-					font-size: 0.5em;
-				}
 			}
 			@media only screen and (max-width: 550px){
-				body{
-					font-size: 0.7;
-				}
+				
+				
 				#img-container{
 					position: static;
 					margin: 0px auto;
@@ -246,7 +246,7 @@
 			<img src="images/contacts.png" alt="headerBox" style="width: 100%; height: 100%; object-fit: cover;">
 			<ul id="nav-bar">
 				<li><a href="index.html"><span id="current">Home</span></a></li>
-				<li><a href="gallery.html">Our Work</a></li>
+				<li><a href="gallery.html">OurWork</a></li>
 				<li><a href="contact.html">Contacts</a></li>
 				
 				<details>
