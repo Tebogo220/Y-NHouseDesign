@@ -117,86 +117,65 @@
     </div>
 
     <script>
-        const API_BASE_URL = "https://c0143927-9f28-465e-9fb4-130c30931e58-00-vlnqt436ojnh.spock.replit.dev";
+const API_BASE_URL = "https://c0143927-9f28-465e-9fb4-130c30931e58-00-vlnqt436ojnh.spock.replit.dev/"; // Render URL
 
-        // Fetch and display images
-        async function fetchImages() {
-            const imageList = document.getElementById('imageList');
-            const loading = document.getElementById('loading');
-            imageList.innerHTML = ''; // Clear previous images
-            loading.style.display = 'block'; // Show loading indicator
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}/get-images`);
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                
-                const images = await response.json();
-                loading.style.display = 'none'; // Hide loading indicator
-                
-                if (images.length === 0) {
-                    imageList.innerHTML = '<p>No images uploaded yet.</p>';
-                    return;
-                }
-                
-                images.forEach(image => {
-                    const imageItem = document.createElement('div');
-                    imageItem.classList.add('gallery-item');
-                    imageItem.innerHTML = `
-                        <img src="${API_BASE_URL}${image.url}" alt="${image.id}" />
-                        <form action="${API_BASE_URL}/delete/${image.id}" method="POST" style="display:inline;">
-                            <button type="submit">Delete</button>
-                        </form>
-                    `;
-                    imageList.appendChild(imageItem);
-                });
-            } catch (error) {
-                console.error('Error fetching images:', error);
-                loading.style.display = 'none';
-                imageList.innerHTML = '<p>Error fetching images. Please try again later.</p>';
-            }
-        }
+// Fetch and display images
+async function fetchImages() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/get-images`, {
+      headers: {
+        Authorization: 'Basic ' + btoa('admin:mjorompa@Y&NHouseDesign12972'),
+      },
+    });
+    const images = await response.json();
+    const imageList = document.getElementById('imageList');
+    imageList.innerHTML = ''; // Clear previous images
 
-        // Handle image upload form submission
-        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const fileInput = document.getElementById('fileInput');
-            const file = fileInput.files[0];
-            
-            if (file.size > 5 * 1024 * 1024) {
-                alert('File size should not exceed 5MB');
-                return;
-            }
-            
-            if (!['image/jpeg', 'image/png'].includes(file.type)) {
-                alert('Only JPG and PNG files are allowed');
-                return;
-            }
+    images.forEach((image) => {
+      const imageItem = document.createElement('div');
+      imageItem.classList.add('gallery-item');
+      imageItem.innerHTML = `
+        <img src="${API_BASE_URL}${image.url}" alt="${image.id}" />
+        <form action="${API_BASE_URL}/delete/${image.id}" method="POST" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      `;
+      imageList.appendChild(imageItem);
+    });
+  } catch (error) {
+    console.error('Error fetching images:', error.message);
+  }
+}
 
-            const formData = new FormData();
-            formData.append('picture', file);
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}/upload`, {
-                    method: 'POST',
-                    body: formData,
-                });
-                const data = await response.json();
-                
-                if (response.ok && data.message === 'File uploaded successfully') {
-                    alert('Image uploaded successfully');
-                    fileInput.value = ''; // Reset file input
-                    fetchImages(); // Refresh the list of images
-                } else {
-                    alert('Error uploading image');
-                }
-            } catch (error) {
-                console.error('Error uploading image:', error);
-                alert('Error uploading image. Please try again.');
-            }
-        });
+// Handle image upload form submission
+document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  try {
+    const formData = new FormData();
+    formData.append('picture', document.getElementById('fileInput').files[0]);
 
-        // Initial fetch to display images on load
-        fetchImages();
+    const response = await fetch(`${API_BASE_URL}/upload`, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Authorization: 'Basic ' + btoa('admin:mjorompa@Y&NHouseDesign12972'),
+      },
+    });
+
+    const data = await response.json();
+    if (data.message === 'File uploaded successfully') {
+      alert('Image uploaded successfully');
+      fetchImages(); // Refresh the list of images
+    } else {
+      alert('Error uploading image');
+    }
+  } catch (error) {
+    console.error('Upload error:', error.message);
+  }
+});
+
+// Initial fetch to display images on load
+fetchImages();
     </script>
 </body>
 </html>
