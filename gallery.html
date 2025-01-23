@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+	<head>
+		
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Transform your home with expert interior and exterior styling services. At Y&N House Design, we create stunning, personalized design to enhance your living spaces and curb appeal. Contact us for modern home styling solutions today!.">
+		<meta name="keywords" content="interior styling, exterior styling, home decor services, modern designs, personalized home design">
+		<meta name="author" content="Y&N House Design">
+		<title>OurWork Page - Y&N House Design</title>
+	
+		
+		
+		<style>
+			body {
+				display: inline-block;
+				font-family: Arial, sans-serif; 
+				background: lightgrey;
+				margin: 5px;
+			}
+			
+			.gallery { 
+				margin: 10px 0;
+				flex-wrap: wrap;
+				gap: 10px; 
+				
+			}
+			
+			.gallery-item {
+				
+                display: grid;
+                grid-template-columns: repeat(3,1fr);
+				gap:10px;
+				text-align: center; 
+			}
+			.gallery-item img {
+				height: 300px;
+				width: 130px;
+				border: 2px solid blue;
+				border-radius: 5px;
+				width: 100%;
+				border-radius: 5px;
+                transition: transform 0.3s;
+            }
+			
+            .gallery-item img:hover{
+                transform: scale(1.05);
+            }
+			
+			#shuffleBtn{
+				font-wait: bold;
+				font-size: 20px;
+				margin: 5px;
+			}
+			
+			#nav-bar{
+				display: flex;
+			}
+			
+			#nav-bar li{
+				list-style: none;
+				margin: 0 15px;
+				
+			}
+			
+			#nav-bar li a{
+				text-decoration: none;
+				color: white;
+				border-radius: 5px;
+				padding: 2px 7px;
+				background-color: #555;
+			}
+			
+			#current{
+				color: black;
+				font-weight: bold;
+			}
+			
+			#divider{
+			border: 2px solid orange;
+			margin-top: 10px;
+			}
+			
+			/*==========MODAL=============*/
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+                justify-content: center;
+                align-items: center;
+                z-index: 10;
+            }
+        
+            .modal img {
+                max-width: 100%;
+                max-height: 90%;
+                border-radius: 10px;
+            }
+            .close{
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                color: white;
+                font-size: 30px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+            .close:hover{
+                color: red;
+            }
+			
+			
+			@media only screen and (max-width: 426px){
+				.gallery-item {
+					grid-template-columns: repeat(2,1fr);
+					gap:10px;
+				}
+			}
+			
+			@media only screen and (max-width: 376px){
+				.gallery-item img {
+					height: 200px;
+					width: 175px;
+				}
+			}
+			
+		</style>
+	
+	</head>
+	<body>
+		<div id="header" >
+			<img src="images/site-header.png" alt="headerBox" style="width: 100%; height: 100%; object-fit: cover;">
+			
+			<ul id="nav-bar">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="gallery.html"><span id="current">OurWork</span></a></li>
+				<li><a href="contact.html">Contacts</a></li>
+			</ul>
+		</div>	
+		
+		<div id="divider"></div>
+		<div id="imageList" class="gallery">
+			 
+			<div class="gallery" id="gallery">
+				<div class="gallery-item" id="gallery-item" >
+					
+						<img alt="" src="gallery img\IMG1.jpg">
+						<img src="gallery img\IMG2.jpg">
+						<img src="gallery img\IMG3.jpg">
+						<img src="gallery img\IMG4.jpg">
+						<img src="gallery img\IMG5.jpg">
+						<img src="gallery img\IMG6.jpg">
+						<img src="gallery img\IMG7.jpg">
+						<img src="gallery img\IMG8.jpg">
+						<img src="gallery img\IMG9.jpg">
+						<img src="gallery img\IMG10.jpg">
+						<img src="gallery img\IMG11.jpg">
+						<img src="gallery img\IMG12.jpg">
+					
+				</div>
+			</div>
+		</div>
+		
+        <div id="imageModal" class="modal" >
+            <span class="close" id="closeModal" >&times;</span>
+            <img id="modalImage" src="" alt="Preview Image">
+        </div>
+
+		<script>
+
+			document.addEventListener("DOMContentLoaded", () => {
+				const gallery = document.querySelector(".gallery");
+				const images = Array.from(gallery.children);
+			
+				
+			
+				// Randomly shuffle images
+				const shuffleImages = () => {
+					const shuffledImages = images
+						.map(value => ({ value, sort: Math.random() }))
+						.sort((a, b) => a.sort - b.sort)
+						.map(({ value }) => value);
+			
+					// shuffled imges back to the gallery
+					shuffledImages.forEach(img => gallery.appendChild(img));
+				};
+			
+				// Button to shuffle/re-arrange images
+				const shuffleButton = document.createElement("button");
+				shuffleButton.textContent = "Re-arrange Images";
+				shuffleButton.style.margin = "10px";
+				shuffleButton.onclick = shuffleImages;
+			
+				// Append the button above the gallery
+				gallery.parentElement.insertBefore(shuffleButton, gallery);
+			});
+			
+
+			//Modal And Elements
+			const modal = document.getElementById("imageModal");
+			const modalImage = document.getElementById("modalImage");
+			const closeModal = document.getElementById("closeModal");
+			const images = document.querySelectorAll(".gallery-item img");
+			
+			images.forEach((img)=> {
+				img.addEventListener("click",() =>{
+					if(!sessionStorage.getItem("alertShown")){
+						alert("Double tab or double click to download this picture!");
+						sessionStorage.setItem("alertShown","true");
+					}
+					modal.style.display = "flex";
+					modalImage.src = img.src;
+					modalImage.alt = img.alt;
+				});
+			});
+			
+			closeModal.addEventListener("click",() => {
+				modal.style.display = "none";
+			});
+			
+			modal.addEventListener("click",(e)=>{
+				if (e.target===modal){
+					modal.style.display = "none";
+				}
+			});
+			
+			modalImage.ondblclick = (event) => {
+				event.preventDefault();
+				event.stopPropagation();
+
+				const link = document.createElement("a");
+				link.href = modalImage.src;
+				link.download = modalImage.src.split("/").pop();
+				document.body.appendChild(link);
+				link.click();
+				document.body.removeChild(link);
+			};
+			
+
+			
+			
+
+
+
+		</script>
+	</body>
+
+
+</html>
